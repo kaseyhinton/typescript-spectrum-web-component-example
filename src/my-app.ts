@@ -5,14 +5,14 @@ import { ChangePathEvent } from "./events";
 
 @customElement("my-app")
 export class MyAppElement extends LitElement {
-  @property({ type: String }) page: string;
+  @property({ type: String }) page!: string;
 
   async firstUpdated() {
     this.addEventListener(
       ChangePathEvent.eventType,
-      (event: ChangePathEvent) => {
+      ((event: ChangePathEvent) => {
         page.show(event.routePath);
-      }
+      }) as EventListenerOrEventListenerObject
     );
 
     page("/", async () => {
